@@ -1,4 +1,7 @@
-﻿namespace ValenteMesmo
+﻿using ConsoleKeyInfo = System.ConsoleKeyInfo;
+using ConsoleKey = System.ConsoleKey;
+
+namespace ValenteMesmo
 {
     public class ConsoleService : IConsole
     {
@@ -34,10 +37,16 @@
             }
         }
 
-        public void ReadKey()
+        public ConsoleKeyInfo ReadKey()
         {
             lock (threadLock)
-                System.Console.ReadKey();
+                return System.Console.ReadKey();
+        }
+
+        public string ReadLine()
+        {
+            lock (threadLock)
+                return System.Console.ReadLine();
         }
 
         public System.ConsoleColor ForegroundColor
@@ -77,6 +86,42 @@
         {
             lock (threadLock)
                 System.Console.Write(text);
+        }
+
+        public string ReadPassword()
+        {
+            string pass = "";
+            lock (threadLock)
+            {
+                do
+                {
+                    var key = System.Console.ReadKey(true);
+                    // Backspace Should Not Work
+                    if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+                    {
+                        pass += key.KeyChar;
+                        lock (threadLock)
+                            System.Console.Write("*");
+                    }
+                    else
+                    {
+                        if (key.Key == ConsoleKey.Backspace && pass.Length > 0)
+                        {
+                            pass = pass.Substring(0, (pass.Length - 1));
+                            lock (threadLock)
+                                System.Console.Write("\b \b");
+                        }
+                        else if (key.Key == ConsoleKey.Enter)
+                        {
+                            break;
+                        }
+                    }
+                } while (true);
+
+                System.Console.WriteLine("");
+            }
+
+            return pass;
         }
 
         public void Dispose() { }

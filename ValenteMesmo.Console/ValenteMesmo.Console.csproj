@@ -8,6 +8,7 @@
     <Company />
     <Product>ValenteMesmo.Console</Product>
     <PackageProjectUrl>https://github.com/ValenteMesmo/Valentemesmo.Console</PackageProjectUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -4,8 +4,10 @@ namespace ValenteMesmo
 {
     public interface IConsole : IDisposable
     {
-        void ReadKey();
-        
+        ConsoleKeyInfo ReadKey();
+        string ReadLine();
+        string ReadPassword();
+
         void WriteLine(string text = "");
         void Write(string text);
         

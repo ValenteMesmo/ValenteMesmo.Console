@@ -1,12 +1,12 @@
-﻿using System;
+﻿using ConsoleKeyInfo = System.ConsoleKeyInfo;
 
 namespace ValenteMesmo
 {
     //TODO: store progressbar list to dispose
     public static class Console
     {
-        public static readonly Lazy<IConsole> Instance
-            = new Lazy<IConsole>(Create);
+        public static readonly System.Lazy<IConsole> Instance
+            = new System.Lazy<IConsole>(Create);
 
         public static IConsole Create() => new ConsoleService();
 
@@ -28,7 +28,9 @@ namespace ValenteMesmo
             set => Instance.Value.CursorVisible = value;
         }
 
-        public static void ReadKey() => Instance.Value.ReadKey();
+        public static ConsoleKeyInfo ReadKey() => Instance.Value.ReadKey();
+        public static string ReadLine() => Instance.Value.ReadLine();
+        public static string ReadPassword() => Instance.Value.ReadPassword();
 
         public static IProgressBar ProgressBar(int total) =>
             Instance.Value.ProgressBar(total);

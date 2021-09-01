@@ -48,7 +48,7 @@ namespace ValenteMesmo.Tests
                 var sut = Console.ProgressBar(100);
 
                 sut.Set(50);
-                Task.Delay(1).Wait();
+                Task.Delay(10).Wait();
 
                 var expected = @"
 
