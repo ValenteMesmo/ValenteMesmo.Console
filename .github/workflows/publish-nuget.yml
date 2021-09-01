@@ -18,9 +18,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1 
 
-      - name: Build generate NuGet package Valentemesmo.Console
+      - name: Build generate NuGet package ValenteMesmo.Console
         run: |  
-          cd Valentemesmo.Console
+          cd ValenteMesmo.Console
           dotnet pack -c Release -o out
           
       - name: Setup NuGet.exe for use with actions
