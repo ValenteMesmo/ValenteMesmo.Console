@@ -31,4 +31,4 @@ jobs:
           nuget-api-key: ${{secrets.NUGET_KEY}}
 
       - name: Push package 1
-        run: dotnet nuget push ./Valentemesmo.Console/out/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_KEY}} --skip-duplicate
+        run: dotnet nuget push ./ValenteMesmo.Console/out/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_KEY}} --skip-duplicate
