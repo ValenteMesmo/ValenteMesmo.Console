@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1 
 
-      - name: Build generate NuGet package Valentemesmo.Railway
+      - name: Build generate NuGet package Valentemesmo.Console
         run: |  
           cd Valentemesmo.Console
           dotnet pack -c Release -o out
