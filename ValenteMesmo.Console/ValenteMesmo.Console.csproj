@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>ValenteMesmo</AssemblyName>
+    <RootNamespace>ValenteMesmo</RootNamespace>
+    <PackageId>ValenteMesmo.Console</PackageId>
+    <Company />
+    <Product>ValenteMesmo.Console</Product>
+    <PackageProjectUrl>https://github.com/ValenteMesmo/Valentemesmo.Console</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="_NCrunch_ValenteMesmo.Console\**" />
+    <EmbeddedResource Remove="_NCrunch_ValenteMesmo.Console\**" />
+    <None Remove="_NCrunch_ValenteMesmo.Console\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ValenteMesmo.Console.v3.ncrunchsolution" />
+  </ItemGroup>
+
+</Project>
