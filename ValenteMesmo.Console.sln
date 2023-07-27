@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31613.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValenteMesmo.Console", "ValenteMesmo.Console\ValenteMesmo.Console.csproj", "{1BE52A22-B46D-4CFC-8EEE-83D8FA73C493}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValenteMesmo.Console.Tests", "ValenteMesmo.Console.Tests\ValenteMesmo.Console.Tests.csproj", "{DE000780-69ED-470E-B2BC-0E66C5CDE938}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{15BC5891-2A43-4FE6-BB8F-7F0B34ED1383}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BB77E164-3D07-4BAD-B250-2A837FBA5962}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\publish-nuget.yml = .github\workflows\publish-nuget.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
