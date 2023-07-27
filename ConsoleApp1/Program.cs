@@ -1,15 +1,21 @@
 ﻿
 using System.Threading;
+using System.Threading.Tasks;
 using ValenteMesmo;
 
 namespace ConsoleApp1
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            var a = Console.ReadPassword();
-            Console.WriteLine(a);
+            var progress = Console.ProgressBar(100);
+
+            for (int i = 0; i <= 100; i++)
+            {
+                await Task.Delay(i * 10);
+                progress.Set(i);
+            }
             Console.ReadKey();
         }
     }

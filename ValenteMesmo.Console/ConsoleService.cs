@@ -1,11 +1,21 @@
-﻿using ConsoleKeyInfo = System.ConsoleKeyInfo;
+﻿using System;
+using System.IO;
+using System.Text;
 using ConsoleKey = System.ConsoleKey;
+using ConsoleKeyInfo = System.ConsoleKeyInfo;
 
 namespace ValenteMesmo
 {
     public class ConsoleService : IConsole
     {
         internal static readonly object threadLock = new object();
+        private Stream stdout;
+
+        public ConsoleService()
+        {
+            System.Console.OutputEncoding = Encoding.UTF8;
+            this.stdout = System.Console.OpenStandardOutput();
+        }
 
         public int CursorTop
         {
@@ -70,10 +80,10 @@ namespace ValenteMesmo
         public IProgressBar ProgressBar(long total) =>
             new ProgressBar(total, this);
 
+        byte[] buffer;
         public void WriteLine(string text = "")
         {
-            lock (threadLock)
-                System.Console.WriteLine(text);
+            Write($"{text}{Environment.NewLine}");
         }
 
         public void SetCursorPosition(int left, int top)
@@ -85,7 +95,10 @@ namespace ValenteMesmo
         public void Write(string text)
         {
             lock (threadLock)
-                System.Console.Write(text);
+            {
+                buffer = Encoding.UTF8.GetBytes(text);
+                stdout.Write(buffer, 0, buffer.Length);
+            }
         }
 
         public string ReadPassword()
@@ -125,6 +138,12 @@ namespace ValenteMesmo
         }
 
         public void Dispose() { }
+
+        public void SetOut(StringWriter sw)
+        {
+            System.Console.SetOut(sw);
+            this.stdout = new StringWriterStream(sw);
+        }
 
         ~ConsoleService()
         {

@@ -1,10 +1,8 @@
 ﻿using AutoFixture.Xunit2;
 using System;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using SystemConsole = System.Console;
 
 namespace ValenteMesmo.Tests
 {
@@ -13,7 +11,7 @@ namespace ValenteMesmo.Tests
         private StringWriter CreateWriter()
         {
             var sw = new StringWriter();
-            SystemConsole.SetOut(sw);
+            Console.SetOut(sw);
 
             return sw;
         }

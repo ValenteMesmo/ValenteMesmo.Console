@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace ValenteMesmo
 {
@@ -20,5 +21,6 @@ namespace ValenteMesmo
         ConsoleColor BackgroundColor { get; set; }
 
         IProgressBar ProgressBar(long total);
+        void SetOut(StringWriter sw);
     }
 }

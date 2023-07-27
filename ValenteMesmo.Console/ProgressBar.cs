@@ -36,7 +36,7 @@ namespace ValenteMesmo
                 while (!disposed)
                 {
                     Render();
-                    await Task.Delay(600);
+                    await Task.Delay(900);
                 }
             });
 
@@ -45,22 +45,27 @@ namespace ValenteMesmo
         public void Dispose()
         {
             disposed = true;
-            task.Wait();
-            Render();
         }
 
         public void Set(long progress)
         {
             this.progress = progress;
+            if (progress >= total)
+                Render();
         }
 
         public void Increment(long progressIncrement = 1)
         {
             progress += progressIncrement;
+            if (progress >= total)
+                Render();
         }
 
         private void Render()
         {
+            if (disposed)
+                return;
+
             lock (ConsoleService.threadLock)
             {
                 console.CursorVisible = false;
@@ -100,7 +105,7 @@ namespace ValenteMesmo
                 //╔══════════════════╗ 60%
                 //║█████▒▒▒▒▒▒▒▒▒▒▒▒▒║ Total: 5min
                 //╚══════════════════╝ Estimated time remaining: 4min");
-                console.SetCursorPosition(0, location-1);
+                console.SetCursorPosition(0, location - 1);
                 console.Write($"╔══════════════════╗ {percentage}%");
                 console.SetCursorPosition(0, location);
                 var background = console.ForegroundColor;
@@ -124,10 +129,11 @@ namespace ValenteMesmo
 
         private string FormatEstimatedTime(TimeSpan timeRemaining)
         {
-            return $"Remaining: { Format(timeRemaining)}";
+            return $"Remaining: {Format(timeRemaining)}";
         }
 
-        private string Format(TimeSpan time) {
+        private string Format(TimeSpan time)
+        {
             return $"{time.Hours:00}:{time.Minutes:00}:{time.Seconds:00}";
         }
 
